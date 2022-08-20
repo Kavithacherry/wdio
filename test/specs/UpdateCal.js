@@ -1,0 +1,31 @@
+describe('Pre retirement update default calculator2', () => {
+    it('User should be able to update default calculator values   ', async () => {
+        browser.url("https://www.securian.com/insights-tools/retirement-calculator.html")
+        await (await($("#current-age"))).setValue("25")
+        browser.maximizeWindow()
+        browser.pause(2000)
+        await (await($("ul[role='presentation']>li>a"))).click()
+        browser.pause(2000)
+        const text = await $("#default-values-modal-title")
+        await text.waitForDisplayed()
+        await expect(text).toBePresent()
+        browser.pause(2000)
+        await (await($("input[id='additional-income']"))).click()
+        await (await($("input[id='additional-income']"))).setValue("800")
+        browser.pause(2000)
+        await (await($("#retirement-duration"))).click()
+        await (await($("#retirement-duration"))).setValue("5")
+        browser.pause(2000)
+        await (await($("#retirement-annual-income"))).click()
+        await (await($("#retirement-annual-income"))).setValue("2")
+        browser.pause(2000)
+        await (await($("#pre-retirement-roi"))).click()
+        await (await($("#pre-retirement-roi"))).setValue("2")
+        browser.pause(2000)
+        await (await($("#post-retirement-roi"))).click()
+        await (await($("#post-retirement-roi"))).setValue("4")
+        browser.pause(2000)
+        await (await($("//button[text()='Save changes']"))).click()
+       
+    });
+});
